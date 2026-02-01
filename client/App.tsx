@@ -8,9 +8,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "next-themes";
 import { DyslexiaProvider } from "@/lib/DyslexiaContext";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+
 import Layout from "./components/layout/Layout";
+
+import Index from "./pages/Index";
 import Employee from "./pages/Employee";
 import Employer from "./pages/Employer";
 import Jobs from "./pages/Jobs";
@@ -20,6 +21,7 @@ import PostJob from "./pages/PostJob";
 import ResumeBuilder from "./pages/ResumeBuilder";
 import Chat from "./pages/Chat";
 import Resources from "./pages/Resources";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -30,25 +32,29 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-        <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Layout><Index /></Layout>} />
-          <Route path="/employee" element={<Layout><Employee /></Layout>} />
-          <Route path="/employer" element={<Layout><Employer /></Layout>} />
-          <Route path="/jobs" element={<Layout><Jobs /></Layout>} />
-          <Route path="/jobs/:id" element={<Layout><JobDetails /></Layout>} />
-          <Route path="/saved" element={<Layout><Saved /></Layout>} />
-          <Route path="/post-job" element={<Layout><PostJob /></Layout>} />
-          <Route path="/resume" element={<Layout><ResumeBuilder /></Layout>} />
-          <Route path="/chat" element={<Layout><Chat /></Layout>} />
-          <Route path="/resources" element={<Layout><Resources /></Layout>} />
-          {}
-          <Route path="*" element={<Layout><NotFound /></Layout>} />
-        </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+
+          <BrowserRouter>
+            <Routes>
+            
+              <Route element={<Layout />}>
+                <Route path="/" element={<Index />} />
+                <Route path="/employee" element={<Employee />} />
+                <Route path="/employer" element={<Employer />} />
+                <Route path="/jobs" element={<Jobs />} />
+                <Route path="/jobs/:id" element={<JobDetails />} />
+                <Route path="/saved" element={<Saved />} />
+                <Route path="/post-job" element={<PostJob />} />
+                <Route path="/resume" element={<ResumeBuilder />} />
+                <Route path="/chat" element={<Chat />} />
+                <Route path="/resources" element={<Resources />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   </DyslexiaProvider>
 );
 
